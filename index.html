@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/utils.css" type="text/css">
+    <!-- <link rel="stylesheet" href="js/script.js"> -->
+    <title>Calculator</title>
+    <style>
+      #display {
+        width: 200px;
+        height: 30px;
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <marquee behavior="scroll" direction="right" id="marquee">
+        <h3 class="text-center"> Welcome to Calculator!</h3>
+      </marquee>
+      <div class="container mx-auto flex flex-col item-center">
+        <div class="row">
+          <input class="input" id="data" type="text" placeholder="Welcome to Calculator!" />
+        </div>
+        <div class="row">
+          <button class="button">C</button>
+          <button class="button">()</button>
+          <button class="button">%</button>
+          <button class="button">/</button>
+        </div>
+        <div class="row">
+          <button class="button">7</button>
+          <button class="button">8</button>
+          <button class="button">9</button>
+          <button class="button">*</button>
+        </div>
+        <div class="row">
+          <button class="button">4</button>
+          <button class="button">5</button>
+          <button class="button">6</button>
+          <button class="button">-</button>
+        </div>
+        <div class="row">
+          <button class="button">1</button>
+          <button class="button">2</button>
+          <button class="button">3</button>
+          <button class="button">+</button>
+        </div>
+        <div class="row">
+          <button class="button">0</button>
+          <button class="button">.</button>
+          <button class="button">=</button>
+          <button class="button">OFF</button>
+        </div>
+      </div>
+      <div class="row">
+        <input class="edit" type="button" value="backSpace" onclick="data.value = data.value.slice(0,-1)">
+      </div>
+  </body>
+
+</html>
+<script>
+  let string = "";
+  let buttons = document.querySelectorAll('.button');
+  Array.from(buttons).forEach((button) => {
+    button.addEventListener('click', (e) => {
+      if (e.target.innerHTML == '=') {
+        string = eval(string);
+        document.querySelector('input').value = string;
+      }
+      else if (e.target.innerHTML == 'C') {
+        string = "";
+        document.querySelector('input').value = string;
+      }
+      else if (e.target.innerHTML == 'OFF') {
+        string = "";
+        document.querySelector('input').value = string;
+      }
+      else {
+        console.log(e.target)
+        string = string + e.target.innerHTML;
+        document.querySelector('input').value = string;
+      }
+    })
+  })
+  const backSpace = () => {
+    let data = document.getElementById('data').value;
+    data.slice(0, 1);
+  }
+</script>
